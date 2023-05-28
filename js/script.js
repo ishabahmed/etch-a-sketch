@@ -1,3 +1,5 @@
+let draw = false;
+
 const main = () => {
   const clearBtn = document.querySelector('#clear');
   clearBtn.addEventListener('click', clearGrid);
@@ -17,12 +19,18 @@ const createGrid = (size) => {
   grid.innerHTML = '';
   grid.setAttribute('style', `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr);`);
   for (let i = 0; i < size * size; i++) {
-    const div = document.createElement('div');
-    div.classList.add('grid-item');
-    div.addEventListener('mouseover', () => {
-      div.setAttribute('style', 'background-color: #161616');
-    });
-    grid.appendChild(div);
+    const item = document.createElement('div');
+    item.classList.add('grid-item');
+
+    const mousedown = () => { draw = true; item.style.backgroundColor = '#161616'; };
+    const mouseup = () => { draw = false; };
+    const mouseenter = () => {  if (draw) item.style.backgroundColor = '#161616'; };
+
+    item.addEventListener('mousedown', mousedown);
+    item.addEventListener('mouseup', mouseup);
+    item.addEventListener('mouseenter', mouseenter);
+
+    grid.appendChild(item);
   }
 };
 
