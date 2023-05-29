@@ -31,12 +31,12 @@ class EtchASketch {
     }
 
     /**
-     * Binds the color picker to change the drawing color.
+     * Binds the color selector to change the drawing color.
      */
     bindColorSelector() {
         const colourSelector = document.querySelector('#colour-selector');
         colourSelector.value = '#161616';
-        colourSelector.addEventListener('change', () => this.setDrawColour(colourSelector.value));
+        colourSelector.addEventListener('input', () => this.setDrawColour(colourSelector.value));
     }
 
     /**
