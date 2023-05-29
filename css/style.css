@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'tsukimi_rounded_semiboldRg';
+  src: url('../fonts/tsukimirounded-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/tsukimirounded-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -5,7 +14,7 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'tsukimi_rounded_semiboldRg', 'Roboto', sans-serif;
 }
 
 #etch-a-sketch {
@@ -22,7 +31,6 @@ body {
 
 #title {
   font-size: 2rem;
-  font-weight: bold;
   color: rgb(250, 200, 60);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 1rem;
@@ -50,7 +58,8 @@ body {
   gap: 2rem;
 }
 
-#controls--left, #controls--right {
+#controls--left,
+#controls--right {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,6 +75,7 @@ button {
   font-weight: bold;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  font-family: inherit;
 }
 
 #slider-container {
