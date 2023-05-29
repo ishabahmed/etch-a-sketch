@@ -1,69 +1,120 @@
-let draw = false;
+/**
+ * Etch-A-Sketch Application
+ */
+class EtchASketch {
+    constructor() {
+        this.draw = false;
+        this.initialize();
+    }
 
-const main = () => {
-  const clearBtn = document.querySelector('#clear');
-  clearBtn.addEventListener('click', clearGrid);
+    /**
+     * Initializes the application and binds event listeners.
+     */
+    initialize() {
+        // Event listeners for application controls.
+        this.bindClearButton();
+        this.bindColorSelector();
+        this.bindDrawButton();
+        this.bindEraserButton();
+        this.bindSizeInput();
 
-  const colourSelector = document.querySelector('#colour-selector');
-  colourSelector.value = '#161616';
-  colourSelector.addEventListener('change', () => {
-    setDrawColour(colourSelector.value);
-  });
+        // Initialize the grid.
+        this.createGrid(16);
+    }
 
-  const drawBtn = document.querySelector('#draw');
-  drawBtn.addEventListener('click', () => {
-    setDrawColour(colourSelector.value);
-  });
+    /**
+     * Binds the Clear button to clear the grid.
+     */
+    bindClearButton() {
+        const clearBtn = document.querySelector('#clear');
+        clearBtn.addEventListener('click', () => this.clearGrid());
+    }
 
-  const eraserBtn = document.querySelector('#eraser');
-  eraserBtn.addEventListener('click', () => {
-    setDrawColour('#c0c0c0');
-  });
+    /**
+     * Binds the color picker to change the drawing color.
+     */
+    bindColorSelector() {
+        const colourSelector = document.querySelector('#colour-selector');
+        colourSelector.value = '#161616';
+        colourSelector.addEventListener('change', () => this.setDrawColour(colourSelector.value));
+    }
 
-  const sizeInput = document.querySelector('#size');
-  sizeInput.addEventListener('change', () => {
-    const sliderValue = document.querySelector('#slider-value');
-    sliderValue.textContent = sizeInput.value + ' x ' + sizeInput.value;
-    createGrid(sizeInput.value);
-  });
+    /**
+     * Binds the Draw button to start drawing.
+     */
+    bindDrawButton() {
+        const drawBtn = document.querySelector('#draw');
+        drawBtn.addEventListener('click', () => this.setDrawColour(document.querySelector('#colour-selector').value));
+    }
 
-  createGrid(16);
-};
+    /**
+     * Binds the Eraser button to erase.
+     */
+    bindEraserButton() {
+        const eraserBtn = document.querySelector('#eraser');
+        eraserBtn.addEventListener('click', () => this.setDrawColour('#c0c0c0'));
+    }
 
-const createGrid = (size) => {
-  const grid = document.querySelector('#grid');
-  grid.innerHTML = '';
-  grid.setAttribute('style', `grid-template-columns: repeat(${size}, 1fr); grid-template-rows: repeat(${size}, 1fr);`);
-  for (let i = 0; i < size * size; i++) {
-    const item = document.createElement('div');
-    item.classList.add('grid-item');
+    /**
+     * Binds the size input to adjust the grid size.
+     */
+    bindSizeInput() {
+        const sizeInput = document.querySelector('#size');
+        sizeInput.addEventListener('change', () => {
+            const sliderValue = document.querySelector('#slider-value');
+            sliderValue.textContent = `${sizeInput.value} x ${sizeInput.value}`;
+            this.createGrid(sizeInput.value);
+        });
+    }
 
-    const mouseup = () => { draw = false; };
-    item.addEventListener('mouseup', mouseup);
+    /**
+     * Creates the drawing grid.
+     * @param {Number} size - The grid size.
+     */
+    createGrid(size) {
+        const grid = document.querySelector('#grid');
+        grid.innerHTML = '';
+        grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-    grid.appendChild(item);
-  }
+        for (let i = 0; i < size * size; i++) {
+            const item = document.createElement('div');
+            item.classList.add('grid-item');
+            item.addEventListener('mouseup', () => this.draw = false);
+            grid.appendChild(item);
+        }
 
-  const colourSelector = document.querySelector('#colour-selector');
-  setDrawColour(colourSelector.value);
-};
+        this.setDrawColour(document.querySelector('#colour-selector').value);
+    }
 
-const setDrawColour = (colour) => {
-  const gridItems = document.querySelectorAll('.grid-item');
+    /**
+     * Sets the drawing color.
+     * @param {String} colour - The color to draw with.
+     */
+    setDrawColour(colour) {
+        const gridItems = document.querySelectorAll('.grid-item');
 
-  gridItems.forEach((item) => {
-    const mousedown = () => { draw = true; item.style.backgroundColor = colour; };
-    const mouseenter = () => { if (draw) item.style.backgroundColor = colour; };
+        gridItems.forEach(item => {
+            item.addEventListener('mousedown', () => {
+                this.draw = true;
+                item.style.backgroundColor = colour;
+            });
 
-    item.addEventListener('mousedown', mousedown);
-    item.addEventListener('mouseenter', mouseenter);
-  });
-};
+            item.addEventListener('mouseenter', () => {
+                if (this.draw) item.style.backgroundColor = colour;
+            });
+        });
+    }
 
-const clearGrid = () => {
-  const grid = document.querySelector('#grid');
-  grid.innerHTML = '';
-  createGrid(document.querySelector('#size').value);
-};
+    /**
+     * Clears the grid.
+     */
+    clearGrid() {
+        const grid = document.querySelector('#grid');
+        grid.innerHTML = '';
+        this.createGrid(document.querySelector('#size').value);
+    }
+}
 
-document.addEventListener('DOMContentLoaded', main);
+// Instantiate the Etch-A-Sketch application when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => new EtchASketch());
