@@ -5,6 +5,27 @@ body {
   height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+}
+
+#etch-a-sketch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(230, 15, 30);
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+#title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(250, 200, 60);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
 }
 
 #grid {
@@ -12,9 +33,43 @@ body {
   gap: 0px 0px;
   width: 400px;
   height: 400px;
+  border: 1px solid #000;
 }
 
 .grid-item {
   background-color: #c0c0c0;
-  /* border: 1px solid #000; */
+  cursor: pointer;
+}
+
+#controls {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+#controls--left, #controls--right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+button {
+  padding: 0.25rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(250, 200, 60);
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+#slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
