@@ -4,6 +4,22 @@ const main = () => {
   const clearBtn = document.querySelector('#clear');
   clearBtn.addEventListener('click', clearGrid);
 
+  const colourSelector = document.querySelector('#colour-selector');
+  colourSelector.value = '#161616';
+  colourSelector.addEventListener('change', () => {
+    setDrawColour(colourSelector.value);
+  });
+
+  const drawBtn = document.querySelector('#draw');
+  drawBtn.addEventListener('click', () => {
+    setDrawColour(colourSelector.value);
+  });
+
+  const eraserBtn = document.querySelector('#eraser');
+  eraserBtn.addEventListener('click', () => {
+    setDrawColour('#c0c0c0');
+  });
+
   const sizeInput = document.querySelector('#size');
   sizeInput.addEventListener('change', () => {
     const sliderValue = document.querySelector('#slider-value');
@@ -28,7 +44,8 @@ const createGrid = (size) => {
     grid.appendChild(item);
   }
 
-  setDrawColour('#161616');
+  const colourSelector = document.querySelector('#colour-selector');
+  setDrawColour(colourSelector.value);
 };
 
 const setDrawColour = (colour) => {
