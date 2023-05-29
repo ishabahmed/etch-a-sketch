@@ -1,12 +1,13 @@
+/* Importing custom fonts */
 @font-face {
   font-family: 'tsukimi_rounded_semiboldRg';
   src: url('../fonts/tsukimirounded-semibold-webfont.woff2') format('woff2'),
     url('../fonts/tsukimirounded-semibold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
+/* Main body styling */
 body {
   display: flex;
   justify-content: center;
@@ -17,7 +18,8 @@ body {
   font-family: 'tsukimi_rounded_semiboldRg', 'Roboto', sans-serif;
 }
 
-#etch-a-sketch {
+/* Main container styling */
+.etch-a-sketch {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,14 +31,16 @@ body {
   padding: 20px;
 }
 
-#title {
+/* Header title styling */
+.etch-a-sketch__title {
   font-size: 2rem;
   color: rgb(250, 200, 60);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 1rem;
 }
 
-#grid {
+/* Grid styling */
+.etch-a-sketch__grid {
   display: grid;
   gap: 0px 0px;
   width: 400px;
@@ -44,12 +48,14 @@ body {
   border: 1px solid #000;
 }
 
+/* Grid item styling */
 .grid-item {
   background-color: #c0c0c0;
   cursor: pointer;
 }
 
-#controls {
+/* Control container styling */
+.etch-a-sketch__controls {
   display: flex;
   width: 400px;
   justify-content: space-between;
@@ -58,14 +64,16 @@ body {
   gap: 2rem;
 }
 
-#controls--left,
-#controls--right {
+/* Left and right control styling */
+.controls__left,
+.controls__right {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
 
+/* Button styling */
 button {
   padding: 0.25rem;
   border: none;
@@ -78,7 +86,8 @@ button {
   font-family: inherit;
 }
 
-#slider-container {
+/* Slider container styling */
+.controls__slider-container {
   display: flex;
   flex-direction: column;
   align-items: center;

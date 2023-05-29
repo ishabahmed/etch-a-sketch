@@ -10,24 +10,33 @@
 </head>
 
 <body>
-  <div id="etch-a-sketch">
-    <span id="title">Etch-A-Sketch</span>
-    <div id="grid"></div>
-    <div id="controls">
-      <div id="controls--left">
-        <input type="color" id="colour-selector">
-        <button id="draw">Draw</button>
+  <main class="etch-a-sketch">
+    <!-- Header Section -->
+    <header class="etch-a-sketch__header">
+      <h1 class="etch-a-sketch__title">Etch-A-Sketch</h1>
+    </header>
+
+    <!-- Main Grid Section -->
+    <section class="etch-a-sketch__grid" id="grid"></section>
+
+    <!-- Controls Section -->
+    <footer class="etch-a-sketch__controls">
+      <div class="controls__left">
+        <label for="colour-selector">Color</label>
+        <input type="color" id="colour-selector" class="color-selector">
+        <button id="draw" class="controls__draw-btn">Draw</button>
       </div>
-      <div id="slider-container">
-        <input type="range" min="1" max="100" value="16" id="size">
-        <span id="slider-value">16x16</span>
+      <div class="controls__slider-container">
+        <label for="size">Size</label>
+        <input type="range" min="1" max="100" value="16" id="size" class="size-slider">
+        <span id="slider-value" class="slider-value">16x16</span>
       </div>
-      <div id="controls--right">
-        <button id="eraser">Eraser</button>
-        <button id="clear">Clear</button>
+      <div class="controls__right">
+        <button id="eraser" class="controls__eraser-btn">Eraser</button>
+        <button id="clear" class="controls__clear-btn">Clear</button>
       </div>
-    </div>
-  </div>
+    </footer>
+  </main>
   <script src="./js/script.js" defer></script>
 </body>
 
