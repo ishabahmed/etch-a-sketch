@@ -22,16 +22,25 @@ const createGrid = (size) => {
     const item = document.createElement('div');
     item.classList.add('grid-item');
 
-    const mousedown = () => { draw = true; item.style.backgroundColor = '#161616'; };
     const mouseup = () => { draw = false; };
-    const mouseenter = () => {  if (draw) item.style.backgroundColor = '#161616'; };
-
-    item.addEventListener('mousedown', mousedown);
     item.addEventListener('mouseup', mouseup);
-    item.addEventListener('mouseenter', mouseenter);
 
     grid.appendChild(item);
   }
+
+  setDrawColour('#161616');
+};
+
+const setDrawColour = (colour) => {
+  const gridItems = document.querySelectorAll('.grid-item');
+
+  gridItems.forEach((item) => {
+    const mousedown = () => { draw = true; item.style.backgroundColor = colour; };
+    const mouseenter = () => { if (draw) item.style.backgroundColor = colour; };
+
+    item.addEventListener('mousedown', mousedown);
+    item.addEventListener('mouseenter', mouseenter);
+  });
 };
 
 const clearGrid = () => {
